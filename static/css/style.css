@@ -1,0 +1,238 @@
+/* ── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f4f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ── Page layout ────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  background: linear-gradient(135deg, #1F4E79 0%, #2E75B6 100%);
+  color: #fff;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon { font-size: 2.4rem; line-height: 1; }
+
+.logo h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: .5px; }
+.logo p  { font-size: .85rem; opacity: .85; margin-top: 2px; }
+
+/* ── Main ───────────────────────────────────────────────── */
+.main {
+  flex: 1;
+  max-width: 760px;
+  width: 100%;
+  margin: 36px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+  text-align: center;
+  transition: box-shadow .2s;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1F4E79;
+  margin-bottom: 8px;
+}
+
+.card-sub {
+  font-size: .9rem;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+/* ── Drop zone ──────────────────────────────────────────── */
+.drop-zone {
+  border: 2px dashed #2E75B6;
+  border-radius: 10px;
+  padding: 40px 24px;
+  cursor: pointer;
+  background: #f4f9ff;
+  transition: background .2s, border-color .2s;
+  margin-bottom: 24px;
+}
+
+.drop-zone.over,
+.drop-zone:hover {
+  background: #e2eeff;
+  border-color: #1F4E79;
+}
+
+.drop-icon { font-size: 3rem; margin-bottom: 10px; }
+.drop-text { font-size: 1rem; font-weight: 600; color: #1F4E79; }
+.drop-hint { font-size: .82rem; color: #888; margin: 6px 0; }
+
+#file-name {
+  margin-top: 10px;
+  font-size: .82rem;
+  color: #2E75B6;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 28px;
+  border-radius: 8px;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all .18s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #2E75B6;
+  color: #fff;
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.btn-primary:hover:not(:disabled) { background: #1F4E79; }
+.btn-primary:disabled { opacity: .45; cursor: not-allowed; }
+
+.btn-outline {
+  background: transparent;
+  border-color: #2E75B6;
+  color: #2E75B6;
+}
+.btn-outline:hover { background: #e2eeff; }
+
+.btn-success {
+  background: #1a7a4a;
+  color: #fff;
+  font-size: 1.05rem;
+}
+.btn-success:hover { background: #145e38; }
+
+/* ── Spinner ────────────────────────────────────────────── */
+.spinner {
+  width: 18px; height: 18px;
+  border: 3px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Progress ───────────────────────────────────────────── */
+.progress-bar-wrap {
+  background: #e9edf2;
+  border-radius: 20px;
+  height: 14px;
+  overflow: hidden;
+  margin: 20px 0 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2E75B6, #41b3e0);
+  border-radius: 20px;
+  transition: width .4s ease;
+}
+
+.progress-label {
+  font-size: .88rem;
+  color: #555;
+}
+
+/* ── Result ─────────────────────────────────────────────── */
+.result-icon { font-size: 3.2rem; margin-bottom: 10px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.stat-box {
+  background: #f0f6ff;
+  border: 1px solid #cde0f7;
+  border-radius: 8px;
+  padding: 14px 10px;
+}
+
+.stat-label { font-size: .75rem; color: #666; text-transform: uppercase; letter-spacing: .5px; }
+.stat-value { font-size: 1.25rem; font-weight: 700; color: #1F4E79; margin-top: 4px; }
+
+.result-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Error ──────────────────────────────────────────────── */
+.error-msg {
+  background: #fff0f0;
+  border: 1px solid #fbb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  color: #a00;
+  font-size: .9rem;
+  margin: 18px 0;
+  text-align: left;
+  word-break: break-word;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 18px;
+  font-size: .8rem;
+  color: #999;
+  border-top: 1px solid #e4e9f0;
+}
+
+/* ── Utilities ──────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .card { padding: 24px 20px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .result-actions { flex-direction: column; }
+  .btn-success, .btn-outline { width: 100%; justify-content: center; }
+}

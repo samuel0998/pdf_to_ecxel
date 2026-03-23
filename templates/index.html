@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF → Excel | Relação de Pedidos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">📊</span>
+          <div>
+            <h1>PDF → Excel</h1>
+            <p>Conversor de Relação de Pedidos</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Upload Card -->
+      <div class="card" id="upload-card">
+        <h2 class="card-title">Converter PDF em Excel</h2>
+        <p class="card-sub">Faça upload do PDF de Relação de Pedidos e receba uma planilha Excel formatada.</p>
+
+        <div class="drop-zone" id="drop-zone">
+          <div class="drop-icon">📄</div>
+          <p class="drop-text">Arraste seu PDF aqui</p>
+          <p class="drop-hint">ou</p>
+          <label class="btn btn-outline" for="file-input">Selecionar Arquivo</label>
+          <input type="file" id="file-input" accept=".pdf" hidden />
+          <p class="drop-hint" id="file-name">Nenhum arquivo selecionado</p>
+        </div>
+
+        <button class="btn btn-primary" id="convert-btn" disabled>
+          <span id="btn-text">⚡ Converter para Excel</span>
+          <span id="btn-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+
+      <!-- Progress Card -->
+      <div class="card hidden" id="progress-card">
+        <h2 class="card-title">Processando…</h2>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="progress-label" id="progress-label">Lendo o PDF…</p>
+      </div>
+
+      <!-- Result Card -->
+      <div class="card hidden" id="result-card">
+        <div class="result-icon">✅</div>
+        <h2 class="card-title">Conversão concluída!</h2>
+
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <div class="result-actions">
+          <a class="btn btn-success" id="download-link" href="#">
+            ⬇️ Baixar Excel
+          </a>
+          <button class="btn btn-outline" id="new-btn">
+            🔄 Nova Conversão
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Card -->
+      <div class="card hidden" id="error-card">
+        <div class="result-icon">❌</div>
+        <h2 class="card-title">Erro na conversão</h2>
+        <p class="error-msg" id="error-msg"></p>
+        <button class="btn btn-outline" id="retry-btn">↩️ Tentar Novamente</button>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Relação de Pedidos – Conversor PDF ➜ Excel</p>
+    </footer>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
