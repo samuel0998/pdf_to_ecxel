@@ -104,10 +104,6 @@ def build_excel(items, output_path):
     # ── Styles ──────────────────────────────────────────────
     header_font   = Font(name='Arial', bold=True, color='FFFFFF', size=10)
     header_fill   = PatternFill('solid', start_color='1F4E79')
-    product_font  = Font(name='Arial', bold=True, color='FFFFFF', size=9)
-    product_fill  = PatternFill('solid', start_color='2E75B6')
-    subtotal_font = Font(name='Arial', bold=True, size=9)
-    subtotal_fill = PatternFill('solid', start_color='D6E4F0')
     total_font    = Font(name='Arial', bold=True, color='FFFFFF', size=10)
     total_fill    = PatternFill('solid', start_color='1F4E79')
     data_font     = Font(name='Arial', size=9)
@@ -166,20 +162,8 @@ def build_excel(items, output_path):
 
     data_font_alt_fill = PatternFill('solid', start_color='EBF3FB')
 
-    for prod_key, prod_items in product_groups.items():
-        # Product header row
-        ws.merge_cells(f'A{row}:H{row}')
-        ph = ws[f'A{row}']
-        ph.value     = prod_key
-        ph.font      = product_font
-        ph.fill      = product_fill
-        ph.alignment = left_align
-        ph.border    = border
-        ws.row_dimensions[row].height = 16
-        row += 1
-
+    for _, prod_items in product_groups.items():
         # Order rows
-        qty_start = row
         for item in prod_items:
             alt = not alt
             row_fill = data_font_alt_fill if alt else PatternFill('solid', start_color='FFFFFF')
@@ -206,24 +190,6 @@ def build_excel(items, output_path):
             ws.row_dimensions[row].height = 15
             row += 1
 
-        # Subtotal row
-        qty_end = row - 1
-        st_cells = [None, None, None, None, 'Total do Item:',
-                    f'=SUM(F{qty_start}:F{qty_end})',
-                    None,
-                    f'=SUM(H{qty_start}:H{qty_end})']
-        for col, val in enumerate(st_cells, 1):
-            if val is None:
-                continue
-            cell = ws.cell(row=row, column=col, value=val)
-            cell.font      = subtotal_font
-            cell.fill      = subtotal_fill
-            cell.alignment = right_align if col in (6, 7, 8) else left_align
-            cell.border    = border
-            if col in (6, 8):
-                cell.number_format = '#,##0.00'
-        ws.row_dimensions[row].height = 15
-        row += 1
 
     # ── Grand Total row ─────────────────────────────────────
     ws.merge_cells(f'A{row}:E{row}')
